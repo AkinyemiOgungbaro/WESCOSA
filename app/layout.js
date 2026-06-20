@@ -49,7 +49,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       {/* Inject all font variables directly into the body tag */}
-      <body className={`${inter.variable} ${mulish.variable} ${nunito.variable} antialiased`}>
+      <body className={`${inter.variable} ${mulish.variable} ${nunito.variable} antialiased bg-#ffffff`} >
         {children}
       </body>
     </html>
