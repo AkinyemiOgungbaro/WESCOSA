@@ -1,8 +1,8 @@
-import Hero from "@/app/Home/Hero";
-import DonationSlider from "@/app/Home/DonationSlider";
-import CampaignDashboard from "@/app/Home/DonationMethod";
-import Header from "./Home/Header";
-import Footer from "./Home/Footer";
+import Hero from "@/components/Hero";
+import DonationSlider from "@/components/DonationSlider";
+import CampaignDashboard from "@/components/DonationMethod";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default function Home() {
   return (
