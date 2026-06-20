@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  
+  /* 1. Map CSS variables to the clean font family names */
+  --font-inter: 'Inter', sans-serif;
+  --font-mulish: 'Mulish', sans-serif;
+  --font-nunito: 'Nunito', sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  /* 2. Register them into Tailwind v4 configuration */
+  --font-sans: var(--font-inter);  /* Sets Inter as your default font-sans */
+  --font-mulish: var(--font-mulish);
+  --font-nunito: var(--font-nunito);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans); /* Defaults whole body to Inter */
+}
