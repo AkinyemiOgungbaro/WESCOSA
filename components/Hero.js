@@ -1,4 +1,4 @@
-import Image from "next/image";
+import LightboxGallery from './LightboxGallery';
 
 const Hero = () => {
   return (
@@ -29,77 +29,7 @@ const Hero = () => {
           />
         </div> */}
 
-        <div className="w-full max-w-6xl mx-auto p-4">
-      {/* Responsive Layout:
-        - 1 Column on mobile viewports
-        - 3 Columns on medium screens and up (Left image takes 1 col, right grid takes 2 cols)
-      */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-2">
-        
-        {/* LEFT COLUMN: Featured Large Image (Full height on desktop) */}
-        <div className="relative w-full h-80 md:h-[500px]">
-          <Image
-            src="/building-façade.svg" // Replace with your image path
-            alt="Main building façade"
-            fill
-            priority // Kept for fast LCP loading
-            className="object-cover rounded-lg shadow-sm"
-          />
-        </div>
-
-        {/* RIGHT COLUMN: 2x2 Sub-grid */}
-        <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-2">
-          
-          {/* Top Left: Rubble Mound (Image) */}
-          <div className="relative w-full h-48 md:h-[242px]">
-            <Image
-              src="/rubble-mound.svg" 
-              alt="Excavated earth and rubble heap"
-              fill
-              className="object-cover rounded-lg shadow-sm"
-            />
-          </div>
-
-          {/* Top Right: Ruined Wall View (Image) */}
-          <div className="relative w-full h-48 md:h-[242px]">
-            <Image
-              src="/ruined-wall.svg" 
-              alt="Demolished wall structural view"
-              fill
-              className="object-cover rounded-lg shadow-sm"
-            />
-          </div>
-
-          {/* Bottom Left: Real Video Element 1 */}
-          <div className="relative w-full h-48 md:h-[242px] bg-black rounded-lg overflow-hidden shadow-sm">
-            <video 
-              src="/site-video-1.mp4" // Replace with your video file path
-              poster="/video-thumbnail-1.jpg" // Optional: preview image before play
-              controls
-              className="absolute inset-0 w-full h-full object-cover"
-              preload="metadata"
-            >
-              Your browser does not support the video tag.
-            </video>
-          </div>
-
-          {/* Bottom Right: Real Video Element 2 */}
-          <div className="relative w-full h-48 md:h-[242px] bg-black rounded-lg overflow-hidden shadow-sm">
-            <video 
-              src="/site-video-2.mp4" // Replace with your video file path
-              poster="/video-thumbnail-2.jpg" // Optional: preview image before play
-              controls
-              className="absolute inset-0 w-full h-full object-cover"
-              preload="metadata"
-            >
-              Your browser does not support the video tag.
-            </video>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
+      <LightboxGallery />
       </div>
     </>
   );

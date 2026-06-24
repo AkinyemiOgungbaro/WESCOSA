@@ -45,11 +45,15 @@ const nunito = Nunito({
   variable: '--font-nunito',
 });
 
+export const viewport = {
+  colorScheme: 'light', // or 'dark' if your app is dark-themed
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       {/* Inject all font variables directly into the body tag */}
-      <body className={`${inter.variable} ${mulish.variable} ${nunito.variable} antialiased bg-#ffffff`} >
+      <body className={`${inter.variable} ${mulish.variable} ${nunito.variable} antialiased bg-white`} >
         {children}
       </body>
     </html>
