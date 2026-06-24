@@ -55,8 +55,8 @@ export default function CampaignDashboard() {
       title: "Directly Bank Transfer",
       fields: [
         { label: "Account Number", value: "2223330000456987", isTracking: true },
-        { label: "Beneficiary Name", value: "Organization One" },
-        { label: "IFSC Code", value: "WRDSBI0BNKPIS" },
+        { label: "Beneficiary Name", value: "Wesley College Old Students Association" },
+        { label: "Bank Name", value: "Zenith Bank" },
       ],
 
 
@@ -97,7 +97,7 @@ const contactData = {
   return (
     <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
       {/* LEFT COLUMN */}
-      <div className="lg:col-span-2 space-y-8 min-h-[2000px]">
+      <div className="lg:col-span-2 space-y-8">
         {/* Sticky Tab Bar */}
         <nav className="sticky top-[100px] z-40 bg-white/95 backdrop-blur-sm flex gap-6 md:gap-8 px-4">
           {tabs.map((tab) => (

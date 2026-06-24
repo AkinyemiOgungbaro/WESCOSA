@@ -41,33 +41,42 @@ export default function InfoDisplayCard({ title, fields, shareTitle }) {
   };
 
   return (
-    <div className="w-full bg-[#FAFCFD] border border-[#EFF3F5] rounded-[6px] p-7 flex justify-between relative shadow-[0_1px_3px_rgba(0,0,0,0.02)] font-sans select-none">
+    <div className="w-full bg-[#FAFCFD] border border-[#EFF3F5] rounded-[6px] p-4 sm:p-7 flex justify-between gap-4 relative shadow-[0_1px_3px_rgba(0,0,0,0.02)] font-sans select-none">
       {/* LEFT BLOCK: Content Details */}
-      <div className="flex-1 min-w-0 pr-4">
+      <div className="flex-1 min-w-0">
         {/* 👑 Main Title Header: Only rendered if title is provided */}
         {title && (
-          <h3 className="font-nunito text-[17px] font-bold text-[#233746] tracking-tight mb-5">
+          <h3 className="font-nunito text-[16px] sm:text-[17px] font-bold text-[#233746] tracking-tight mb-4 sm:mb-5">
             {title}
           </h3>
         )}
 
         {/* Dynamic Data Rows Table Area */}
-        <div className="space-y-[14px] text-[14px]">
+        <div className="space-y-4 sm:space-y-[14px] text-[14px]">
           {Array.isArray(fields) &&
             fields.map((field, idx) => (
-              <div key={idx} className="flex items-start">
-                <span className="font-nunito w-36 text-[#2E4049] text-[16px] font-normal shrink-0">
+              /* FIXED: Changed to stacked flex-col on mobile, flex-row on small screens and up */
+              <div key={idx} className="flex flex-col sm:flex-row sm:items-start min-w-0 w-full">
+                
+                {/* Field Label Track */}
+                <span className="font-nunito w-full sm:w-36 text-[#667085] sm:text-[#2E4049] text-[13px] sm:text-[16px] font-normal shrink-0 mb-0.5 sm:mb-0">
                   {field.label}
                 </span>
+                
+                {/* Field Value Text Wrapper - FIXED: Removed 'truncate', added break-words and flexibility */}
                 <span
-                  className={`font-nunito text-[#2E4049] select-all truncate flex items-center gap-1.5 ${
+                  className={`font-nunito text-[#2E4049] text-[14px] sm:text-[16px] select-all flex items-center flex-wrap gap-1.5 min-w-0 break-words [word-break:break-word] ${
                     field.isBold !== false ? "font-bold" : "font-normal"
                   } ${field.isTracking ? "tracking-[0.01em]" : ""}`}
                 >
-                  {field.value}
+                  <span className="break-all sm:break-normal">{field.value}</span>
 
                   {/* 👑 Dynamic Inline Icon: Renders only if field.icon exists */}
-                  {field.icon && field.icon}
+                  {field.icon && (
+                    <span className="inline-flex shrink-0 items-center">
+                      {field.icon}
+                    </span>
+                  )}
                 </span>
               </div>
             ))}
