@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 export default function LightboxGallery() {
-  // 1. Convert media data into an array so we can navigate by index
   const mediaItems = [
     { type: 'image', src: '/building-façade.svg', alt: 'Main building façade' },
     { type: 'image', src: '/rubble-mound.svg', alt: 'Excavated earth and rubble heap' },
@@ -13,10 +12,8 @@ export default function LightboxGallery() {
     { type: 'video', src: '/site-video-2.mp4', poster: '/video-thumbnail-2.jpg', alt: 'Site Video 2' },
   ];
 
-  // Track the index of the active media item (-1 or null means closed)
   const [activeIndex, setActiveIndex] = useState(null);
 
-  // Helper functions to go forward and backward
   const showNext = () => {
     setActiveIndex((prevIndex) => (prevIndex + 1) % mediaItems.length);
   };
@@ -25,7 +22,6 @@ export default function LightboxGallery() {
     setActiveIndex((prevIndex) => (prevIndex - 1 + mediaItems.length) % mediaItems.length);
   };
 
-  // 2. Add Keyboard event listeners (Left/Right Arrows and Escape key)
   useEffect(() => {
     if (activeIndex === null) return;
 
@@ -39,16 +35,16 @@ export default function LightboxGallery() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [activeIndex]);
 
-  // Get the currently open item data
   const activeMedia = activeIndex !== null ? mediaItems[activeIndex] : null;
 
   return (
     <div className="w-full max-w-6xl mx-auto p-4">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-2">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-2">
         
-        {/* LEFT COLUMN: Featured Large Image (Index 0) */}
+        {/* LEFT COLUMN: Featured Image (Index 0) */}
+        {/* FIXED: Reduced mobile height to h-48 or h-36 so it matches the rows perfectly */}
         <div 
-          className="relative w-full h-80 md:h-[500px] cursor-pointer group overflow-hidden rounded-lg shadow-sm"
+          className="relative w-full h-36 sm:h-48 md:h-[500px] col-span-2 md:col-span-1 cursor-pointer group overflow-hidden rounded-lg shadow-sm"
           onClick={() => setActiveIndex(0)}
         >
           <Image
@@ -61,11 +57,11 @@ export default function LightboxGallery() {
         </div>
 
         {/* RIGHT COLUMN: 2x2 Sub-grid */}
-        <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-2">
+        <div className="col-span-2 md:col-span-2 grid grid-cols-2 gap-3 md:gap-2">
           
           {/* Top Left: Rubble Mound (Index 1) */}
           <div 
-            className="relative w-full h-48 md:h-[242px] cursor-pointer group overflow-hidden rounded-lg shadow-sm"
+            className="relative w-full h-36 sm:h-48 md:h-[242px] cursor-pointer group overflow-hidden rounded-lg shadow-sm"
             onClick={() => setActiveIndex(1)}
           >
             <Image
@@ -78,7 +74,7 @@ export default function LightboxGallery() {
 
           {/* Top Right: Ruined Wall View (Index 2) */}
           <div 
-            className="relative w-full h-48 md:h-[242px] cursor-pointer group overflow-hidden rounded-lg shadow-sm"
+            className="relative w-full h-36 sm:h-48 md:h-[242px] cursor-pointer group overflow-hidden rounded-lg shadow-sm"
             onClick={() => setActiveIndex(2)}
           >
             <Image
@@ -91,22 +87,22 @@ export default function LightboxGallery() {
 
           {/* Bottom Left: Video Element 1 (Index 3) */}
           <div 
-            className="relative w-full h-48 md:h-[242px] bg-black rounded-lg overflow-hidden shadow-sm cursor-pointer group"
+            className="relative w-full h-36 sm:h-48 md:h-[242px] bg-black rounded-lg overflow-hidden shadow-sm cursor-pointer group"
             onClick={() => setActiveIndex(3)}
           >
             <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors">
-              <div className="w-12 h-12 flex items-center justify-center rounded-full bg-white/90 text-black shadow-md transform group-hover:scale-110 transition-transform">▶</div>
+              <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white/90 text-black shadow-md transform group-hover:scale-110 transition-transform text-sm md:text-base">▶</div>
             </div>
             <video src={mediaItems[3].src} poster={mediaItems[3].poster} className="absolute inset-0 w-full h-full object-cover" preload="metadata" disabled />
           </div>
 
           {/* Bottom Right: Video Element 2 (Index 4) */}
           <div 
-            className="relative w-full h-48 md:h-[242px] bg-black rounded-lg overflow-hidden shadow-sm cursor-pointer group"
+            className="relative w-full h-36 sm:h-48 md:h-[242px] bg-black rounded-lg overflow-hidden shadow-sm cursor-pointer group"
             onClick={() => setActiveIndex(4)}
           >
             <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors">
-              <div className="w-12 h-12 flex items-center justify-center rounded-full bg-white/90 text-black shadow-md transform group-hover:scale-110 transition-transform">▶</div>
+              <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white/90 text-black shadow-md transform group-hover:scale-110 transition-transform text-sm md:text-base">▶</div>
             </div>
             <video src={mediaItems[4].src} poster={mediaItems[4].poster} className="absolute inset-0 w-full h-full object-cover" preload="metadata" disabled />
           </div>
@@ -156,13 +152,13 @@ export default function LightboxGallery() {
                   alt={activeMedia.alt}
                   fill
                   className="object-contain"
-                  key={activeMedia.src} // Key forces Next.js to replace the image smoothly during transitions
+                  key={activeMedia.src}
                 />
               </div>
             ) : (
               <video 
                 src={activeMedia.src}
-                key={activeMedia.src} // Key forces the video player to load the new source file immediately
+                key={activeMedia.src}
                 controls
                 autoPlay
                 className="max-w-full max-h-full rounded shadow-2xl"

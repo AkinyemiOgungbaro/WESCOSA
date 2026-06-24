@@ -51,7 +51,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-white">
       {/* Inject all font variables directly into the body tag */}
       <body className={`${inter.variable} ${mulish.variable} ${nunito.variable} antialiased bg-white`} >
         {children}
