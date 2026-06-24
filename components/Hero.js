@@ -5,8 +5,9 @@ const Hero = () => {
     <>
       <div className="mx-auto w-full mt-15 md:mt-20 ">
         <div className="mb-6 flex flex-col gap-0.5 px-4 md:px-8 space-y-6">
-          <h1 className="text-[39px] text-center font-semibold text-[#2E4049] leading-tight mb-2">Let’s build a Legacy Together! - WESCOSA House Project</h1>
-          {/* <p className="flex items-center justify-start py-1 px-3 rounded-2xl space-x-2 text-sm mt-2 bg-[#FEF3F2] w-fit font-medium text-[#B42318]">
+<h1 className="text-[24px] md:text-[39px] text-center font-semibold text-[#2E4049] leading-tight mb-2">
+  Let’s build a Legacy Together! - WESCOSA House Project
+</h1>          {/* <p className="flex items-center justify-start py-1 px-3 rounded-2xl space-x-2 text-sm mt-2 bg-[#FEF3F2] w-fit font-medium text-[#B42318]">
             <span>
               <Image
                 src="/emergency.svg"
