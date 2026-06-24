@@ -8,8 +8,8 @@ export default function LightboxGallery() {
     { type: 'image', src: '/building-façade.svg', alt: 'Main building façade' },
     { type: 'image', src: '/rubble-mound.svg', alt: 'Excavated earth and rubble heap' },
     { type: 'image', src: '/ruined-wall.svg', alt: 'Demolished wall structural view' },
-    { type: 'video', src: '/site-video-1.mp4', poster: '/video-thumbnail-1.jpg', alt: 'Site Video 1' },
-    { type: 'video', src: '/site-video-2.mp4', poster: '/video-thumbnail-2.jpg', alt: 'Site Video 2' },
+    { type: 'video', src: '/Video-1.mp4', poster: '/video-thumbnail-1.jpg', alt: 'Site Video 1' },
+    { type: 'video', src: '/Video-2.mp4', poster: '/video-thumbnail-2.jpg', alt: 'Site Video 2' },
   ];
 
   const [activeIndex, setActiveIndex] = useState(null);
@@ -42,7 +42,6 @@ export default function LightboxGallery() {
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-2">
         
         {/* LEFT COLUMN: Featured Image (Index 0) */}
-        {/* FIXED: Reduced mobile height to h-48 or h-36 so it matches the rows perfectly */}
         <div 
           className="relative w-full h-36 sm:h-48 md:h-[500px] col-span-2 md:col-span-1 cursor-pointer group overflow-hidden rounded-lg shadow-sm"
           onClick={() => setActiveIndex(0)}
@@ -93,7 +92,17 @@ export default function LightboxGallery() {
             <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors">
               <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white/90 text-black shadow-md transform group-hover:scale-110 transition-transform text-sm md:text-base">▶</div>
             </div>
-            <video src={mediaItems[3].src} poster={mediaItems[3].poster} className="absolute inset-0 w-full h-full object-cover" preload="metadata" disabled />
+            {/* FIXED: Added loop, autoPlay, muted, and playsInline for continuous background preview loops */}
+            <video 
+              src={mediaItems[3].src} 
+              poster={mediaItems[3].poster} 
+              className="absolute inset-0 w-full h-full object-cover" 
+              preload="metadata" 
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
           </div>
 
           {/* Bottom Right: Video Element 2 (Index 4) */}
@@ -104,7 +113,17 @@ export default function LightboxGallery() {
             <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors">
               <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white/90 text-black shadow-md transform group-hover:scale-110 transition-transform text-sm md:text-base">▶</div>
             </div>
-            <video src={mediaItems[4].src} poster={mediaItems[4].poster} className="absolute inset-0 w-full h-full object-cover" preload="metadata" disabled />
+            {/* FIXED: Added loop, autoPlay, muted, and playsInline for continuous background preview loops */}
+            <video 
+              src={mediaItems[4].src} 
+              poster={mediaItems[4].poster} 
+              className="absolute inset-0 w-full h-full object-cover" 
+              preload="metadata" 
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
           </div>
 
         </div>
@@ -156,11 +175,14 @@ export default function LightboxGallery() {
                 />
               </div>
             ) : (
+              /* FIXED: Added muted and playsInline so it opens up playing instantly inside the lightbox */
               <video 
                 src={activeMedia.src}
                 key={activeMedia.src}
                 controls
                 autoPlay
+                muted
+                playsInline
                 className="max-w-full max-h-full rounded shadow-2xl"
               />
             )}
